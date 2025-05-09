@@ -32,31 +32,36 @@ class LinkedList:
             self.tail = node
 
     def pop(self):
-        if self.head is None:
-            raise LinkedListVaziaException(
-                "Lista vazia! Elementos não podem ser removidos!")
+        try:
+            if self.head is None:
+                raise LinkedListVaziaException("Lista vazia! Elementos não podem ser removidos!")
 
-        value_removed = self.head.get_data()
+            value_removed = self.head.get_data()
+            if self.head.get_next() is None:
+                self.head = None
+                self.tail = None
+            else:
+                self.head = self.head.get_next()
 
-        if self.head.get_next() is None:
-            self.head = None
-            self.tail = None
-        else:
-            self.head = self.head.get_next()
-
-        return value_removed
+            return value_removed
+        except LinkedListVaziaException as e:
+            print(e)
+            
     
     def search(self, item):
-        if(self.is_empty()):
-            raise LinkedListVaziaException("Lista vazia!")
+        try:
+            if(self.is_empty()):
+                raise LinkedListVaziaException("Lista vazia!")
         
-        curr = self.head
-        while curr is not None:
-            if(curr.get_data() == item):
-                return True
-            curr = curr.get_next()
-            
-        return False
+            curr = self.head
+            while curr is not None:
+                if(curr.get_data() == item):
+                    return True
+                curr = curr.get_next()
+                
+            return False
+        except LinkedListVaziaException as e:
+            print(e)
 
     def __str__(self):
         elements = []
