@@ -16,4 +16,4 @@ class Node:
         self._next = updated_next
         
     def __str__(self):
-        return f"Node [{str(self.get_data())}] => {str(self.get_next())}"
+        return f"Node [{str(self.get_data())}]"
