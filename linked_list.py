@@ -7,13 +7,13 @@ class LinkedListVaziaException(Exception):
 
 class LinkedList:
     def __init__(self):
-        self.head = None  # O inicio da lista
-        self.tail = None  # O fim da lista
+        self.head: Node | None = None  # O inicio da lista
+        self.tail: Node | None = None  # O fim da lista
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return not self.head
-    
-    def size(self):
+
+    def size(self) -> int:
         count = 0
         curr = self.head
         while curr is not None:
@@ -21,49 +21,41 @@ class LinkedList:
             curr = curr.get_next()
         return count
 
-    def append(self, valor):
+    def append(self, valor: any) -> None:
         node = Node(valor)
-        if (self.head is None):
+        if self.head is None:
             self.head = node
             self.tail = node
         else:
-            temp = self.tail
-            temp.set_next(node)
+            self.tail.set_next(node)
             self.tail = node
 
-    def pop(self):
-        try:
-            if self.head is None:
-                raise LinkedListVaziaException("Lista vazia! Elementos não podem ser removidos!")
+    def pop(self) -> any:
+        if self.is_empty():
+            raise LinkedListVaziaException("Lista vazia! Elementos não podem ser removidos!")
 
-            value_removed = self.head.get_data()
-            if self.head.get_next() is None:
-                self.head = None
-                self.tail = None
-            else:
-                self.head = self.head.get_next()
+        value_removed = self.head.get_data()
+        if self.head.get_next() is None:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.get_next()
 
-            return value_removed
-        except LinkedListVaziaException as e:
-            print(e)
-            
-    
-    def search(self, item):
-        try:
-            if(self.is_empty()):
-                raise LinkedListVaziaException("Lista vazia!")
-        
-            curr = self.head
-            while curr is not None:
-                if(curr.get_data() == item):
-                    return True
-                curr = curr.get_next()
-                
-            return False
-        except LinkedListVaziaException as e:
-            print(e)
+        return value_removed
 
-    def __str__(self):
+    def search(self, item: any) -> bool:
+        if self.is_empty():
+            raise LinkedListVaziaException("Lista vazia!")
+
+        curr = self.head
+        while curr is not None:
+            if curr.get_data() == item:
+                return True
+            curr = curr.get_next()
+
+        return False
+
+    def __str__(self) -> str:
         elements = []
         curr = self.head
         while curr:
