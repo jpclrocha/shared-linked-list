@@ -1,15 +1,14 @@
 from threading import Thread
-from linked_list import LinkedList, LinkedListVaziaException
+from linked_list_lock import LinkedListLock, LinkedListVaziaException
 from custom_logger import get_logger
 import random
 from math import floor
 import time
 
 logger = get_logger()
-lista = LinkedList()
+lista = LinkedListLock()
 
 def worker_append():
-    global lista
     for _ in range(0, 50):
         value = floor(random.random() * 10)
         lista.append(value)
@@ -17,7 +16,6 @@ def worker_append():
         time.sleep(0.0001)
 
 def worker_pop():
-    global lista
     for _ in range(0, 40):
         try:
             logger.debug(f"Removendo {lista.pop()} da lista; Estado atual da lista: {lista}")
@@ -26,7 +24,6 @@ def worker_pop():
         time.sleep(0.0001)
         
 def worker_search():
-    global lista
     for _ in range(0, 50):
         try:
             value = floor(random.random() * 10)
@@ -51,4 +48,4 @@ for t in threads:
 for t in threads:
     t.join()
 
-print(f"Total final na lista (não confiável sem lock): {lista.size()}")
+print(f"Total final na lista (agr com lock): {lista.size()}")
