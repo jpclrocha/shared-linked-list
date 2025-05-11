@@ -7,6 +7,7 @@ class LinkedListVaziaException(Exception):
 
 
 class LinkedList:
+    DELAY_TIME = 0
     def __init__(self):
         self.head: Node | None = None  # O inicio da lista
         self.tail: Node | None = None  # O fim da lista
@@ -33,12 +34,12 @@ class LinkedList:
             self.tail = node
             
         self._logger.debug(f"Adicionando {valor} na lista; Estado atual da lista: {self.__str__()}")
-        time.sleep(0.1)
+        time.sleep(LinkedList.DELAY_TIME)
 
     def pop(self) -> any:
         if self.is_empty():
             self._logger.debug("Lista Vazia! Elementos não podem ser removidos!")
-            time.sleep(0.1)
+            time.sleep(LinkedList.DELAY_TIME)
             return
             # raise LinkedListVaziaException("Lista vazia! Elementos não podem ser removidos!")
 
@@ -50,13 +51,13 @@ class LinkedList:
             self.head = self.head.get_next()
 
         self._logger.debug(f"Removendo {value_removed} da lista; Estado atual da lista: {self.__str__()}")
-        time.sleep(0.1)
+        time.sleep(LinkedList.DELAY_TIME)
         return value_removed
 
     def search(self, item: any) -> bool:
         if self.is_empty():
             self._logger.debug("Lista Vazia! Elementos não podem ser buscados!")
-            time.sleep(0.1)
+            time.sleep(LinkedList.DELAY_TIME)
             return False
             # raise LinkedListVaziaException("Lista vazia!")
 
@@ -64,12 +65,12 @@ class LinkedList:
         while curr is not None:
             if curr.get_data() == item:
                 self._logger.debug(f"Procurando {item} na lista; Encontrou? Sim; Estado atual da lista: {self.__str__()}")
-                time.sleep(0.1)
+                time.sleep(LinkedList.DELAY_TIME)
                 return True
             curr = curr.get_next()
 
         self._logger.debug(f"Procurando {item} na lista; Encontrou? Não; Estado atual da lista: {self.__str__()}")
-        time.sleep(0.1)
+        time.sleep(LinkedList.DELAY_TIME)
         return False
 
     def __str__(self) -> str:
