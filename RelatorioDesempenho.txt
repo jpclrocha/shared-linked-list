@@ -1,0 +1,31 @@
+Instituto Federal de Alagoas – IFAL / Campus Maceió  
+Disciplina: Estruturas de Dados e Sistemas Operacionais     
+Curso: Bacharelado em Sistemas de Informação
+Alunos: João Pedro de Castro laranjeira Rocha e Daniel do Carmo Nascimento 
+
+
+Este é o relatorio da implementação de um simulador em Python para uma lista encadeada manipulada concorrentemente por múltiplas threads
+, com o objetivo de demonstrar e analisar problemas clássicos de concorrência como condição de corrida, exclusão mútua, deadlocks e starvation.
+
+Como exigido pelo professor usanso de uma  listas encadeada
+
+Foram inplementadas as operações:
+  - Inserção no final
+  - Remoção do início
+  - Busca de elementos
+Com os dois modos de execução com lock e sem lock.
+  - linked_list_lock.py--> Com lock
+  - Main.py-->Sem lock
+
+Tecnologias utilizadas
+ Python 3.x
+- `threading.Thread`
+- `threading.Lock`
+- Implementação manual de lista encadeada (`valor`, `prox`)
+
+Também utilizamos as extensões recomendadas  
+
+- Logs com cores e delays artificiais para visualização didática
+- Modo visual/debug passo-a-passo
+
+Observações e comentários:
