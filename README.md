@@ -28,7 +28,7 @@ Este repositório contém a implementação de um simulador em Python para uma l
 
 ## 🧰 Tecnologias e Requisitos
 
-- Python 3.x
+- Python 3
 - `threading.Thread`
 - `threading.Lock`
 - Implementação manual de lista encadeada (`valor`, `prox`)
@@ -59,3 +59,5 @@ Este repositório contém a implementação de um simulador em Python para uma l
 **Instituto Federal de Alagoas – IFAL / Campus Maceió**  
 Disciplina: Estruturas de Dados e Sistemas Operacionais     
 Curso: Bacharelado em Sistemas de Informação
+
+
