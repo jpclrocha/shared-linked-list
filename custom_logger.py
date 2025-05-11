@@ -16,12 +16,12 @@ class ColorFormatter(logging.Formatter):
         record.msg = f"{color}{record.msg}{RESET}"
         return super().format(record)
 
-def get_logger():
+def Logger():
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
     handler = logging.StreamHandler()
-    handler.setFormatter(ColorFormatter("[%(threadName)s] %(message)s"))
+    handler.setFormatter(ColorFormatter("[%(threadName)s] %(asctime)s %(message)s"))
     logger.handlers = [handler]
     
     return logger

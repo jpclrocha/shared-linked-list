@@ -1,11 +1,9 @@
 from threading import Thread
 from linked_list import LinkedList, LinkedListVaziaException
-from custom_logger import get_logger
 import random
 from math import floor
 import time
 
-logger = get_logger()
 lista = LinkedList()
 
 def worker_append():
@@ -13,32 +11,25 @@ def worker_append():
     for _ in range(0, 50):
         value = floor(random.random() * 10)
         lista.append(value)
-        logger.debug(f"Adicionando {value} na lista; Estado atual da lista: {lista}")
         time.sleep(0.0001)
 
 def worker_pop():
     global lista
-    for _ in range(0, 40):
-        try:
-            logger.debug(f"Removendo {lista.pop()} da lista; Estado atual da lista: {lista}")
-        except LinkedListVaziaException:
-            logger.debug("Lista Vazia! Elementos não podem ser removidos!")
+    for _ in range(0, 50):
+        lista.pop()
         time.sleep(0.0001)
         
 def worker_search():
     global lista
     for _ in range(0, 50):
-        try:
-            value = floor(random.random() * 10)
-            logger.debug(f"Procurando {value} na lista; Encontrou? {'Sim' if lista.search(value) else 'Não'}; Estado atual da lista: {lista}")
-        except LinkedListVaziaException:
-            logger.debug("Lista Vazia! Elementos não será encontrado!")
+        value = floor(random.random() * 10)
+        lista.search(value)
         time.sleep(0.0001)
 
 # criar múltiplas threads de cada tipo
 threads = []
 
-for i in range(10):
+for i in range(2):
     threads.append(Thread(target=worker_append, name=f"ADD-{i+1}"))
     threads.append(Thread(target=worker_pop, name=f"POP-{i+1}"))
     threads.append(Thread(target=worker_search, name=f"BUSCA-{i+1}"))
