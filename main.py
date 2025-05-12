@@ -6,7 +6,7 @@ import time
 
 lista = LinkedList()
 
-DELAY_TIME = 0.0001
+DELAY_TIME = 0.1
 
 def worker_append():
     global lista
@@ -31,7 +31,7 @@ def worker_search():
 # criar múltiplas threads de cada tipo
 threads = []
 
-for i in range(1000):
+for i in range(2):
     threads.append(Thread(target=worker_append, name=f"ADD-{i+1}"))
     threads.append(Thread(target=worker_pop, name=f"POP-{i+1}"))
     threads.append(Thread(target=worker_search, name=f"BUSCA-{i+1}"))

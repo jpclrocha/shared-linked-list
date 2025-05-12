@@ -25,6 +25,7 @@ class LinkedList:
         return count
 
     def append(self, valor: any) -> None:
+        self._logger.debug("Entrando em append")
         node = Node(valor)
         if self.head is None:
             self.head = node
@@ -34,11 +35,14 @@ class LinkedList:
             self.tail = node
             
         self._logger.debug(f"Adicionando {valor} na lista; Estado atual da lista: {self.__str__()}")
+        self._logger.debug("Saindo de append")
         time.sleep(LinkedList.DELAY_TIME)
 
     def pop(self) -> any:
+        self._logger.debug("Entrando em pop")
         if self.is_empty():
             self._logger.debug("Lista Vazia! Elementos não podem ser removidos!")
+            self._logger.debug("Saindo de pop")
             time.sleep(LinkedList.DELAY_TIME)
             return
             # raise LinkedListVaziaException("Lista vazia! Elementos não podem ser removidos!")
@@ -51,12 +55,15 @@ class LinkedList:
             self.head = self.head.get_next()
 
         self._logger.debug(f"Removendo {value_removed} da lista; Estado atual da lista: {self.__str__()}")
+        self._logger.debug("Saindo de pop")
         time.sleep(LinkedList.DELAY_TIME)
         return value_removed
 
     def search(self, item: any) -> bool:
+        self._logger.debug("Entrando em search")
         if self.is_empty():
             self._logger.debug("Lista Vazia! Elementos não podem ser buscados!")
+            self._logger.debug("Saindo de search")
             time.sleep(LinkedList.DELAY_TIME)
             return False
             # raise LinkedListVaziaException("Lista vazia!")
@@ -65,11 +72,13 @@ class LinkedList:
         while curr is not None:
             if curr.get_data() == item:
                 self._logger.debug(f"Procurando {item} na lista; Encontrou? Sim; Estado atual da lista: {self.__str__()}")
+                self._logger.debug("Saindo de search")
                 time.sleep(LinkedList.DELAY_TIME)
                 return True
             curr = curr.get_next()
 
         self._logger.debug(f"Procurando {item} na lista; Encontrou? Não; Estado atual da lista: {self.__str__()}")
+        self._logger.debug("Saindo de search")
         time.sleep(LinkedList.DELAY_TIME)
         return False
 

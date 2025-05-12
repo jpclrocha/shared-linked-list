@@ -43,15 +43,16 @@ Foram realizados testes com múltiplas threads (5, como pedido, e 1000, à prop�
 
 - **Versão sem lock**:
   - Resultados inconsistentes.
-  - Corrupção de dados evidente (elementos perdidos).
+  - Múltiplas operações executadas ao mesmo tempo, sem qualquer tipo de bloqueio
   - Tempo médio ~0.26s.
 
 - **Versão com lock**:
   - Comportamento determinístico.
+  - Uma operação é executada por vez.
   - Integridade da estrutura preservada.
   - Tempo médio ~0.46s.
 
-A diferença de desempenho foi observada, como esperado, devido à serialização das operações provocada pelos locks. Como utilizamos os ponteiros de `head` e `tail`, a lista não quebra com frequência e não temos problemas de índices e ponteiros quebrados.
+A diferença de desempenho foi observada, como esperado, devido à serialização das operações provocada pelos locks. Como utilizamos os ponteiros de `head` e `tail`, a lista não quebra com frequência e não temos problemas de índices e ponteiros quebrados. Porém, é possível observar que na implementação sem lock várias operações são iniciadas ao mesmo tempo, sem que uma operação que ocorreu primeiro tenha terminado sua execução. Na lista com lock isso não ocorre, e podemos observar isso com os logs
 
 ## Conteúdo consultado
 
